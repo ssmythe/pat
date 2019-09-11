@@ -1,0 +1,23 @@
+variables:
+  product: Phil
+  component: Castle
+  name: World
+  message: Whoomp, there it is
+sourcerepos:
+  - name: templates
+    repo: local
+    upstream: master
+    branch: master
+    visibility: private
+destrepos:
+  - name: component
+    repo: local
+    upstream: master
+    branch: master
+    visibility: private
+templates:
+  - name: hello
+    sourcerepo: templates
+    sourcepath: datasource/jenkins_cloud.txt
+    destrepos: [ component ]
+    destpath: jenkins_cloud.yml

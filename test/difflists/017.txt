@@ -1,0 +1,6 @@
+${EXPECTED}/017/component/hello.sh ${COMPONENT}/hello.sh
+${EXPECTED}/017/component/there.sh ${COMPONENT}/there.sh
+${EXPECTED}/017/component/foo/a.txt ${COMPONENT}/foo/a.txt
+${EXPECTED}/017/component/bar/b.txt ${COMPONENT}/bar/b.txt
+${EXPECTED}/017/other/foo/a.txt ${OTHER}/foo/a.txt
+${EXPECTED}/017/other/bar/b.txt ${OTHER}/bar/b.txt

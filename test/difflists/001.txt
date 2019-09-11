@@ -1,0 +1,1 @@
+${EXPECTED}/001/component/hello.sh ${COMPONENT}/hello.sh

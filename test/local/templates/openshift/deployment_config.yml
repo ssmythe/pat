@@ -1,0 +1,53 @@
+kind: DeploymentConfig
+apiVersion: v1
+metadata:
+  name: "{{ .name }}"
+  annotations:
+    description: Defines how to deploy the application server
+    template.alpha.openshift.io/wait-for-ready: 'true'
+spec:
+  strategy:
+    type: Rolling
+  triggers:
+  - type: ImageChange
+    imageChangeParams:
+      automatic: false
+      containerNames:
+      - nodejs-example
+      from:
+        kind: ImageStreamTag
+        name: "{{ .name }}:latest"
+  - type: ConfigChange
+  replicas: 1
+  selector:
+    name: "{{ .name }}"
+  template:
+    metadata:
+      name: "{{ .name }}"
+      labels:
+        name: "{{ .name }}"
+    spec:
+      containers:
+      - name: "{{ .name }}-example"
+        image: " "
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          timeoutSeconds: 3
+          initialDelaySeconds: 3
+          httpGet:
+            path: "/"
+            port: 8080
+        livenessProbe:
+          timeoutSeconds: 3
+          initialDelaySeconds: 30
+          httpGet:
+            path: "/"
+            port: 8080
+        resources:
+          limits:
+            memory: "{{ .memory_limit }}"
+        env: [
+          "name": "JAVA_OPTIONS",
+          "value": "{{ .java_options }}"
+        ]

@@ -1,0 +1,25 @@
+variables:
+  name: World
+sourcerepos:
+  - name: templates
+    repo: local
+    upstream: master
+    branch: master
+    visibility: private
+destrepos:
+  - name: component
+    repo: local
+    upstream: master
+    branch: master
+    visibility: private
+  - name: other
+    repo: local
+    upstream: master
+    branch: master
+    visibility: private
+templates:
+  - name: hello
+    sourcerepo: templates
+    sourcepath: reference_app/bash/
+    destrepos: [ component, other ]
+    destpath: ./

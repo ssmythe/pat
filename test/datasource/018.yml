@@ -1,0 +1,4 @@
+clouds: [ dev, qa, prod ]
+dev_images: [ dev_cont_a, dev_cont_b ]
+qa_images: [ qa_cont_a ]
+prod_images: [ prod_cont_a ]

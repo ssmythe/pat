@@ -1,0 +1,43 @@
+variables:
+  product: Phil
+  component: Castle
+  name: World
+  message: Whoomp, there it is
+sourcerepos:
+  - name: templates
+    repo: local
+    upstream: master
+    branch: master
+    visibility: private
+destrepos:
+  - name: component
+    repo: local
+    upstream: master
+    branch: master
+    visibility: private
+  - name: other
+    repo: local
+    upstream: master
+    branch: master
+    visibility: private
+templates:
+  - name: hello
+    sourcerepo: templates
+    sourcepath: reference_app/bash/
+    destrepos: [ component ]
+    destpath: ./
+  - name: there
+    sourcerepo: templates
+    sourcepath: reference_app/more_bash/there.sh
+    destrepos: [ component ]
+    destpath: there.sh
+  - name: foo
+    sourcerepo: templates
+    sourcepath: data/story_a/a.txt
+    destrepos: [ component, other ]
+    destpath: foo/a.txt
+  - name: bar
+    sourcerepo: templates
+    sourcepath: data/story_b/
+    destrepos: [ component, other ]
+    destpath: bar/

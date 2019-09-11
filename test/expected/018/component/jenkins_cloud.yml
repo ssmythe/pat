@@ -1,0 +1,15 @@
+jenkins:
+  clouds:
+    - kubernetes:
+        name: "dev"
+        templates:
+          - name: dev_cont_a
+          - name: dev_cont_b
+    - kubernetes:
+        name: "qa"
+        templates:
+          - name: qa_cont_a
+    - kubernetes:
+        name: "prod"
+        templates:
+          - name: prod_cont_a

@@ -1,0 +1,20 @@
+variables:
+  name: World
+sourcerepos:
+  - name: templates
+    repo: github.com/ssmythe/pat_test_templates
+    upstream: master
+    branch: master
+    visibility: private
+destrepos:
+  - name: component
+    repo: github.com/ssmythe/pat_test_component
+    upstream: master
+    branch: master
+    visibility: private
+templates:
+  - name: hello
+    sourcerepo: templates
+    sourcepath: reference_app/bash/
+    destrepos: [ component ]
+    destpath: ./

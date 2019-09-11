@@ -1,0 +1,24 @@
+kind: BuildConfig
+apiVersion: v1
+metadata:
+  name: "{{ .name }}"
+  annotations:
+    description: Defines how to build the application
+    template.alpha.openshift.io/wait-for-ready: 'true'
+spec:
+  source:
+    type: Git
+    git:
+      uri: "{{ .source_repo_url }}"
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        namespace: "{{ .base_image_namespace }}"
+        name: "{{ .base_image_name }}:{{ .base_image_version }}"
+  output:
+    to:
+      kind: ImageStreamTag
+      name: "{{ .name }}:latest"
+

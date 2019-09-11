@@ -1,0 +1,2 @@
+${EXPECTED}/005/component/hello.sh ${COMPONENT}/hello.sh
+${EXPECTED}/005/component/.pat ${COMPONENT}/.pat

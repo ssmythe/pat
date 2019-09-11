@@ -1,0 +1,7 @@
+The letter B and {x{ .product }x}.
+
+B and {x{ .product }x} decided to go for a walk.
+They ran into {x{ .component }x} and said, "{x{ .message }x}".
+{x{ .component }x} nodded and said, "foo is as it was, and ever will be".
+B and {x{ .product }x} had a profound moment and walked
+back home pondering the wisdom {x{ .component }x} had imparted.

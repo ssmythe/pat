@@ -1,0 +1,1 @@
+${EXPECTED}/018/component/jenkins_cloud.yml ${COMPONENT}/jenkins_cloud.yml

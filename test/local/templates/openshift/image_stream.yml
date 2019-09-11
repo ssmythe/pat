@@ -1,0 +1,6 @@
+kind: ImageStream
+apiVersion: v1
+metadata:
+  name: "{x{ .name }x}"
+  annotations:
+    description: Keeps track of changes in the application image

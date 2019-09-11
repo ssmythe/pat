@@ -1,0 +1,22 @@
+jenkins:
+  clouds:
+{x{- range $cloud := (datasource "vars").clouds }x}
+    - kubernetes:
+        name: "{x{ $cloud }x}"
+        templates:
+  {x{- if eq ($cloud) ("dev") }x}
+    {x{- range $image := (datasource "vars").dev_images }x}
+          - name: {x{ $image }x}
+    {x{- end }x}
+  {x{- end }x}
+  {x{- if eq ($cloud) ("qa") }x}
+    {x{- range $image := (datasource "vars").qa_images }x}
+          - name: {x{ $image }x}
+   {x{- end }x}
+  {x{- end }x}
+  {x{- if eq ($cloud) ("prod") }x}
+    {x{- range $image := (datasource "vars").prod_images }x}
+          - name: {x{ $image }x}
+    {x{- end }x}
+  {x{- end }x}
+{x{- end }x}
