@@ -1,0 +1,14 @@
+variables:
+  name: World
+sourcerepos:
+  - name: templates
+    repo: local
+destrepos:
+  - name: component
+    repo: local
+templates:
+  - name: hello
+    sourcerepo: templates
+    sourcepath: reference_app/bash/hello.sh
+    destrepos: [ component ]
+    destpath: hello.sh
