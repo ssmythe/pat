@@ -6,15 +6,9 @@ variables:
 sourcerepos:
   - name: templates
     repo: local
-    upstream: master
-    branch: master
-    visibility: private
 destrepos:
   - name: component
     repo: local
-    upstream: master
-    branch: master
-    visibility: private
 templates:
   - name: hello
     sourcerepo: templates

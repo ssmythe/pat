@@ -3,15 +3,9 @@ variables:
 sourcerepos:
   - name: templates
     repo: bitbucket.org/smythefamily/pat_test_templates
-    upstream: master
-    branch: master
-    visibility: private
 destrepos:
   - name: component
     repo: bitbucket.org/smythefamily/pat_test_component
-    upstream: master
-    branch: master
-    visibility: private
 templates:
   - name: hello
     sourcerepo: templates

@@ -39,7 +39,7 @@ type Template struct {
 }
 
 // Globals
-const AppVersion = "0.0.23"
+const AppVersion = "0.0.24"
 
 var tmpfile string
 var user string
@@ -314,6 +314,13 @@ func isTemplateInForceTemplates(template string, forceTemplates string) bool {
 	return result
 }
 
+func defaultValueIfEmpty(value string, defaultValue string) string {
+	if value == "" {
+		return defaultValue
+	}
+	return value
+}
+
 func usage() {
 	fmt.Printf("Usage: %s [OPTIONS]\n", path.Base(os.Args[0]))
 	flag.PrintDefaults()
@@ -353,10 +360,19 @@ func main() {
 
 	if *localMode == false {
 		for r := range y.SourceRepos {
-			cloneRepo(y.SourceRepos[r].Repo, y.SourceRepos[r].Name, y.SourceRepos[r].Upstream, y.SourceRepos[r].Branch, y.SourceRepos[r].Visibility, *workDir)
+			upstream := defaultValueIfEmpty(y.SourceRepos[r].Upstream, "master")
+			branch := defaultValueIfEmpty(y.SourceRepos[r].Branch, "master")
+			visibility := defaultValueIfEmpty(y.SourceRepos[r].Visibility, "private")
+			debug("main(): if *localMode == false", "upstream=["+upstream+"]")
+			debug("main(): if *localMode == false", "branch=["+branch+"]")
+			debug("main(): if *localMode == false", "visibility=["+visibility+"]")
+			cloneRepo(y.SourceRepos[r].Repo, y.SourceRepos[r].Name, upstream, branch, visibility, *workDir)
 		}
 		for r := range y.DestRepos {
-			cloneRepo(y.DestRepos[r].Repo, y.DestRepos[r].Name, y.DestRepos[r].Upstream, y.DestRepos[r].Branch, y.DestRepos[r].Visibility, *workDir)
+			upstream := defaultValueIfEmpty(y.SourceRepos[r].Upstream, "master")
+			branch := defaultValueIfEmpty(y.SourceRepos[r].Branch, "master")
+			visibility := defaultValueIfEmpty(y.SourceRepos[r].Visibility, "private")
+			cloneRepo(y.DestRepos[r].Repo, y.DestRepos[r].Name, upstream, branch, visibility, *workDir)
 		}
 	}
 

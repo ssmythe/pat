@@ -3,20 +3,11 @@ variables:
 sourcerepos:
   - name: templates
     repo: github.com/ssmythe/pat_test_templates
-    upstream: master
-    branch: master
-    visibility: private
 destrepos:
   - name: component
     repo: github.com/ssmythe/pat_test_component
-    upstream: master
-    branch: master
-    visibility: private
   - name: other
     repo: github.com/ssmythe/pat_test_other
-    upstream: master
-    branch: master
-    visibility: private
 templates:
   - name: hello
     sourcerepo: templates
