@@ -333,7 +333,7 @@ func main() {
 	commitFlag := flag.Bool("commit", false, "git commit and push changes")
 	flag.Parse()
 
-	if flag.NArg() == 0 {
+	if flag.NFlag() == 0 {
 		usage()
 		os.Exit(0)
 	}
