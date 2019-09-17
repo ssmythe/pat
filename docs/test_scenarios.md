@@ -198,3 +198,11 @@ Similar to real world scenario with multiple templates merging into a single rep
 # Data Sources
 ## Scenario 18
 Use datasource for complex data structures to expand iterative template
+
+# Branch Tests
+## Scenario 101
+upstream: master, branch: feature (new branch)
+
+## Scenario 102
+upstream: master, branch: feature (new existing branch)
+

@@ -39,6 +39,8 @@ function wipe_component_repo_contents() {
   git rm \* || true
   git commit -m "wiping repo contents" || true
   git push origin master || true
+  git branch -d feature || true
+  git push origin --delete feature || true
   popd
 }
 
@@ -49,6 +51,8 @@ function wipe_other_repo_contents() {
   git rm \* || true
   git commit -m "wiping repo contents" || true
   git push origin master || true
+  git branch -d feature || true
+  git push origin --delete feature || true
   popd
 }
 

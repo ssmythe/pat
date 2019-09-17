@@ -157,12 +157,14 @@ func cloneRepo(repoURL string, repoName string, upstream string, branch string, 
 		runCommandIgnoreError(workDir+"/"+repoName, "git", "checkout", "-b", branch)
 	}
 	runCommand("cloneRepo() git checkout "+branch, workDir+"/"+repoName, "git", "checkout", branch)
-	fmt.Println("Pulling repo:", repoName, "branch:", branch)
-	if provider == "github.com" {
-		runCommand("cloneRepo() hub pull origin "+branch, workDir+"/"+repoName, "hub", "pull", "origin", branch)
-	} else {
-		runCommand("cloneRepo() git clean -d -x -f", workDir+"/"+repoName, "git", "clean", "-d", "-x", "-f")
-		runCommand("cloneRepo() git pull origin "+branch, workDir+"/"+repoName, "git", "pull", "origin", branch)
+	if upstream == branch {
+		fmt.Println("Pulling repo:", repoName, "branch:", branch)
+		if provider == "github.com" {
+			runCommand("cloneRepo() hub pull origin "+branch, workDir+"/"+repoName, "hub", "pull", "origin", branch)
+		} else {
+			runCommand("cloneRepo() git clean -d -x -f", workDir+"/"+repoName, "git", "clean", "-d", "-x", "-f")
+			runCommand("cloneRepo() git pull origin "+branch, workDir+"/"+repoName, "git", "pull", "origin", branch)
+		}
 	}
 }
 
@@ -191,9 +193,9 @@ func pushRepo(repoURL string, repoName string, branch string, workDir string) {
 		if err == nil {
 			fmt.Println("Pushing repo:", repoName)
 			if provider == "github.com" {
-				runCommand("pushRepo() hub push origin "+branch, targetDir, "hub", "push", "origin", branch)
+				runCommand("pushRepo() hub push origin "+branch, targetDir, "hub", "push", "-u", "origin", branch)
 			} else {
-				runCommand("pushRepo() git push origin "+branch, targetDir, "git", "push", "origin", branch)
+				runCommand("pushRepo() git push origin "+branch, targetDir, "git", "push", "-u", "origin", branch)
 			}
 		} else {
 			fmt.Println("...no new files to push:", repoName)
@@ -363,9 +365,6 @@ func main() {
 			upstream := defaultValueIfEmpty(y.SourceRepos[r].Upstream, "master")
 			branch := defaultValueIfEmpty(y.SourceRepos[r].Branch, "master")
 			visibility := defaultValueIfEmpty(y.SourceRepos[r].Visibility, "private")
-			debug("main(): if *localMode == false", "upstream=["+upstream+"]")
-			debug("main(): if *localMode == false", "branch=["+branch+"]")
-			debug("main(): if *localMode == false", "visibility=["+visibility+"]")
 			cloneRepo(y.SourceRepos[r].Repo, y.SourceRepos[r].Name, upstream, branch, visibility, *workDir)
 		}
 		for r := range y.DestRepos {
