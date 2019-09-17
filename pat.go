@@ -10,6 +10,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path"
 	"path/filepath"
 	"strings"
 )
@@ -313,6 +314,11 @@ func isTemplateInForceTemplates(template string, forceTemplates string) bool {
 	return result
 }
 
+func usage() {
+	fmt.Printf("Usage: %s [OPTIONS]\n", path.Base(os.Args[0]))
+	flag.PrintDefaults()
+}
+
 func main() {
 	forceTemplates := flag.String("force", "", "Comma separated list of templates to overwrite, use --force=* for all templates")
 	specFile := flag.String("spec", "", "The path to spec file")
@@ -326,6 +332,11 @@ func main() {
 	debugFlag := flag.Bool("debug", false, "output extra information about what pat is doing")
 	commitFlag := flag.Bool("commit", false, "git commit and push changes")
 	flag.Parse()
+
+	if flag.NArg() == 0 {
+		usage()
+		os.Exit(0)
+	}
 
 	if *version {
 		fmt.Println("pat version " + AppVersion)
