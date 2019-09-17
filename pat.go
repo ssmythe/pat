@@ -369,9 +369,9 @@ func main() {
 			cloneRepo(y.SourceRepos[r].Repo, y.SourceRepos[r].Name, upstream, branch, visibility, *workDir)
 		}
 		for r := range y.DestRepos {
-			upstream := defaultValueIfEmpty(y.SourceRepos[r].Upstream, "master")
-			branch := defaultValueIfEmpty(y.SourceRepos[r].Branch, "master")
-			visibility := defaultValueIfEmpty(y.SourceRepos[r].Visibility, "private")
+			upstream := defaultValueIfEmpty(y.DestRepos[r].Upstream, "master")
+			branch := defaultValueIfEmpty(y.DestRepos[r].Branch, "master")
+			visibility := defaultValueIfEmpty(y.DestRepos[r].Visibility, "private")
 			cloneRepo(y.DestRepos[r].Repo, y.DestRepos[r].Name, upstream, branch, visibility, *workDir)
 		}
 	}
@@ -405,7 +405,8 @@ func main() {
 
 	if *localMode == false {
 		for r := range y.DestRepos {
-			pushRepo(y.DestRepos[r].Repo, y.DestRepos[r].Name, y.DestRepos[r].Branch, *workDir)
+			branch := defaultValueIfEmpty(y.DestRepos[r].Branch, "master")
+			pushRepo(y.DestRepos[r].Repo, y.DestRepos[r].Name, branch, *workDir)
 		}
 	}
 
