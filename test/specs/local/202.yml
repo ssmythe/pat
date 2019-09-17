@@ -1,11 +1,11 @@
 variables:
-  name: World
+  name: Dude
 sourcerepos:
   - name: templates
-    repo: bitbucket.org/smythefamily/pat_test_templates
+    repo: local
 destrepos:
   - name: component
-    repo: bitbucket.org/smythefamily/pat_test_component
+    repo: local
 templates:
   - name: hello
     sourcerepo: templates

@@ -59,30 +59,15 @@ variables:
 sourcerepos:
   - name: templates
     repo: bitbucket.org/foo/pat_test_templates
-    upstream: master
-    branch: master
-    visibility: private
 destrepos:
   - name: component
     repo: bitbucket.org/foo/pat_test_component
-    upstream: master
-    branch: master
-    visibility: private
   - name: job_dsl_dev
     repo: bitbucket.org/foo/pat_test_job_dsl_dev
-    upstream: master
-    branch: master
-    visibility: private
   - name: job_dsl_nonprod
     repo: bitbucket.org/foo/pat_test_job_dsl_nonprod
-    upstream: master
-    branch: master
-    visibility: private
   - name: job_dsl_prod
     repo: bitbucket.org/foo/pat_test_job_dsl_prod
-    upstream: master
-    branch: master
-    visibility: private
 templates:
   - name: reference
     sourcerepo: templates

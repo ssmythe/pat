@@ -2,10 +2,10 @@
 
 load test_helper
 
-@test "scenario_001_local" {
+@test "scenario_201_local" {
   seed_local_templates
 
-  run bash -c "${APP} --commit --spec test/specs/local/001.yml --work ${SANDBOX} --local"
+  run bash -c "${APP} --commit --spec test/specs/local/201.yml --work ${SANDBOX} --local"
   [ "$status" -eq 0 ]
-  difflist test/difflists/001.txt
+  [ ! -f ${COMPONENT}/hello.sh ]
 }

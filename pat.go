@@ -36,6 +36,7 @@ type Template struct {
 	SourcePath string
 	DestRepos  []string
 	DestPath   string
+	Locked     bool
 }
 
 // Globals
@@ -381,24 +382,29 @@ func main() {
 		sourcePath := y.Templates[t].SourcePath
 		destRepos := y.Templates[t].DestRepos
 		destPath := y.Templates[t].DestPath
+		locked := y.Templates[t].Locked
 		force := isTemplateInForceTemplates(name, *forceTemplates)
-		for r := range destRepos {
-			destRepo := destRepos[r]
-			fmt.Println("Processing template:", name)
-			destFullPath := *workDir + "/" + destRepo + "/" + destPath
-			if isPathADir(destFullPath) {
-				err := os.MkdirAll(destFullPath, 0755)
-				fatalIfError("main() isPathADir=true os.MkdirAll", err)
-				processTemplate(*workDir, sourceRepo, sourcePath, destRepo, destPath, tmpfile, *leftDelim, *rightDelim, force, *gomplateArgs)
-			} else {
-				targetDir := filepath.Dir(destFullPath)
-				if !isPathADir(targetDir) {
-					fmt.Println("Creating dir:", targetDir)
-					err := os.MkdirAll(targetDir, 0755)
-					fatalIfError("main() isPathADir=false os.MkdirAll", err)
+		if locked == false {
+			for r := range destRepos {
+				destRepo := destRepos[r]
+				fmt.Println("Processing template:", name)
+				destFullPath := *workDir + "/" + destRepo + "/" + destPath
+				if isPathADir(destFullPath) {
+					err := os.MkdirAll(destFullPath, 0755)
+					fatalIfError("main() isPathADir=true os.MkdirAll", err)
+					processTemplate(*workDir, sourceRepo, sourcePath, destRepo, destPath, tmpfile, *leftDelim, *rightDelim, force, *gomplateArgs)
+				} else {
+					targetDir := filepath.Dir(destFullPath)
+					if !isPathADir(targetDir) {
+						fmt.Println("Creating dir:", targetDir)
+						err := os.MkdirAll(targetDir, 0755)
+						fatalIfError("main() isPathADir=false os.MkdirAll", err)
+					}
+					processTemplate(*workDir, sourceRepo, sourcePath, destRepo, destPath, tmpfile, *leftDelim, *rightDelim, force, *gomplateArgs)
 				}
-				processTemplate(*workDir, sourceRepo, sourcePath, destRepo, destPath, tmpfile, *leftDelim, *rightDelim, force, *gomplateArgs)
 			}
+		} else {
+			fmt.Println("Skipping locked template:", name)
 		}
 	}
 

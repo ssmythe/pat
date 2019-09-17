@@ -2,12 +2,12 @@
 
 load test_helper
 
-@test "scenario_001_bitbucket" {
+@test "scenario_201_bitbucket" {
   wipe_component_repo_contents
   teardown
   setup
 
-  run bash -c "${APP} --commit --spec test/specs/bitbucket/001.yml --work ${SANDBOX} --user stevesmythe"
+  run bash -c "${APP} --commit --spec test/specs/bitbucket/201.yml --work ${SANDBOX} --user stevesmythe"
   [ "$status" -eq 0 ]
-  difflist test/difflists/001.txt
+  [ ! -f ${COMPONENT}/hello.sh ]
 }

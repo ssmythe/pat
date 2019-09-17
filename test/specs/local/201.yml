@@ -12,3 +12,4 @@ templates:
     sourcepath: reference_app/bash/hello.sh
     destrepos: [ component ]
     destpath: hello.sh
+    locked: true

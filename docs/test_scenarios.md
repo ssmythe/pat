@@ -206,3 +206,12 @@ upstream: master, branch: feature (new branch)
 ## Scenario 102
 upstream: master, branch: feature (new existing branch)
 
+# Locked Tests
+## Scenario 201
+New repo, template locked, no file created
+
+## Scenario 202
+Existing repo, template locked, file not updated
+
+## Scenario 203
+Existing repo, template locked, force update, file not updated
