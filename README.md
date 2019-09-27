@@ -95,8 +95,9 @@ $ pat --version
 
 ## Windows
 ### 1a. Install git, hub, and gomplate
+Download Chocolatey from https://chocolatey.org/
 ```bash
-$ choco -y install git hub
+C:\>choco -y install git hub
 ```
 
 ### 1b. Install gomplate
