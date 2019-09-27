@@ -71,7 +71,7 @@ $ gomplate --version
 $ pat --version
 ```
 
-## Linux (Redhat family)
+## Linux (Red Hat family)
 ### 1. Install git, hub, and gomplate
 ```bash
 $ yum -y install git hub gomplate
