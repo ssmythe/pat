@@ -8,7 +8,7 @@ This cli is for assembling various git repo templates into usable git repos.
 * `pat` allows you to process individual files or directories by specifying them as an option.
 * `pat` allows for multiple source and destination repositories all having unique references.
 * `pat` supports github and bitbucket.
-* `pat` requires `hub`, `bitbucket-cli`, and `gomplate` to be installed and available in the system path.
+* `pat` requires `git`, `hub` (for github), and `gomplate` to be installed and available in the system path.
 * `pat` supports specification processing a single file or a directory structure of files.
 
 # Prerequisites
@@ -49,7 +49,73 @@ https://github.com/hairyhenderson/gomplate
 https://docs.gomplate.ca/installing/
 
 # Installation
-```How to install pat instructions here```
+## macOS
+### 1. Install git, hub, and gomplate
+```bash
+$ brew install git hub gomplate
+```
+
+### 2. Download pat for darwin and install to /usr/local/bin
+Download pat darwin binary from https://github.com/ssmythe/pat/releases
+Note: rename VERSION to whatever the version number is of the release
+```bash
+$ sudo mv ~/Downloads/pat-darwin-amd64-VERSION /usr/local/bin/pat
+$ sudo chmod +x /usr/local/bin/pat
+```
+
+### 3. Test everything is installed and working
+```bash
+$ git --version
+$ hub --version
+$ gomplate --version
+$ pat --version
+```
+
+## Linux (RedHat family)
+### 1. Install git, hub, and gomplate
+```bash
+$ yum -y install git hub gomplate
+```
+
+### 2. Download pat for darwin and install to /usr/local/bin
+Download pat linux binary from https://github.com/ssmythe/pat/releases
+Note: rename VERSION to whatever the version number is of the release
+```bash
+$ sudo mv ~/Downloads/pat-linux-amd64-VERSION /usr/local/bin/pat
+$ sudo chmod +x /usr/local/bin/pat
+```
+
+### 3. Test everything is installed and working
+```bash
+$ git --version
+$ hub --version
+$ gomplate --version
+$ pat --version
+```
+
+## Windows
+### 1a. Install git, hub, and gomplate
+```bash
+$ choco -y install git hub
+```
+
+### 1b. Install gomplate
+Download gomplate for Windows from https://github.com/hairyhenderson/gomplate/releases
+Rename the executable to "gomplate.exe"
+Move it into your C:\Windows\System32 directory (or some other directory that's on your system path, if you prefer)
+
+### 2. Download pat for windows and install to /usr/local/bin
+Download pat windows binary from https://github.com/ssmythe/pat/releases
+Rename the executable to "gomplate.exe"
+Move it into your C:\Windows\System32 directory (or some other directory that's on your system path, if you prefer)
+
+### 3. Test everything is installed and working
+```bash
+C:\>git --version
+C:\>hub --version
+C:\>gomplate --version
+C:\>pat --version
+```
 
 # Specification File
 ```yaml
